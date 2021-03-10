@@ -47,7 +47,6 @@ public class Hj28Main {
     //匈牙利算法，先到先得 能让就让
     //有机会上，没机会创造机会也要上
     public static void main(String[] args) {
-        // TODO Auto-generated method stub
         Scanner scan = new Scanner(System.in);
         while (scan.hasNext()) {
             int n = scan.nextInt();
