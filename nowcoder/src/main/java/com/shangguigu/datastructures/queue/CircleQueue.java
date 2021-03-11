@@ -75,6 +75,7 @@ public class CircleQueue {
         //2、将front后移,考虑取模---->front=(front+1)%maxSize
         //3、返回临时保存的变量
         int res = array[front];
+        array[front] = 0;
         front = (front + 1) % maxSize;
         return res;
     }
@@ -86,7 +87,7 @@ public class CircleQueue {
             return;
         }
         //从front开始遍历，遍历多少个元素
-        for (int i = front; i < front + size(); ++i) {
+        for (int i = front; i < front + size(); i++) {
             System.out.printf("arr[%d]=%d\n", i % maxSize, array[i % maxSize]);
         }
     }
