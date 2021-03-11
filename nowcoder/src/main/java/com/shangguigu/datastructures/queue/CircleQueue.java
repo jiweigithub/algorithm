@@ -75,18 +75,23 @@ public class CircleQueue {
         //2、将front后移,考虑取模---->front=(front+1)%maxSize
         //3、返回临时保存的变量
         int res = array[front];
-        array[front] = 0;
+        array[front] = -1;
         front = (front + 1) % maxSize;
         return res;
     }
 
     //显示队列所有数据
     public void showQueue() {
+        System.out.printf("数组内数据\n");
+        for (int i = 0; i < maxSize; i++) {
+            System.out.printf("arr[%d]=%d\n", i, array[i]);
+        }
         if (isEmpty()) {
             System.out.println("队列为空，没数据");
             return;
         }
         //从front开始遍历，遍历多少个元素
+        System.out.printf("队列内信息\nfront=%d, rear=%d \n",front,rear);
         for (int i = front; i < front + size(); i++) {
             System.out.printf("arr[%d]=%d\n", i % maxSize, array[i % maxSize]);
         }
