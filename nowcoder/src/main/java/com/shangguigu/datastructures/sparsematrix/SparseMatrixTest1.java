@@ -13,7 +13,7 @@ public class SparseMatrixTest1 {
     public static void main(String[] args) throws IOException {
         //1 创建原始的二维数组 11*11
         //0表示无效数据， 1表示黑数据， 2表示蓝数据
-        int chessArray1[][] = new int[11][11];
+        int[][] chessArray1 = new int[11][11];
         chessArray1[1][2] = 1;
         chessArray1[2][3] = 2;
         chessArray1[3][4] = 2;
