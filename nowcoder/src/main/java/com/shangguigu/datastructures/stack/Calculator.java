@@ -36,6 +36,7 @@ public class Calculator {
         // 将所有的空格去掉，并将 (- 替换为 (0-
         input = input.replaceAll(" ", "");
         input = input.replaceAll("\\(-", "(0-");
+        input = input.replaceAll("\\(\\+", "(0+");
         //创建符号栈
         Deque<Character> operStack = new LinkedList<>();
         //创建数字栈
