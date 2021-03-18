@@ -1,5 +1,8 @@
 package com.shangguigu.datastructures.stack;
 
+import javax.script.ScriptEngine;
+import javax.script.ScriptEngineManager;
+import javax.script.ScriptException;
 import java.util.Deque;
 import java.util.HashMap;
 import java.util.LinkedList;
@@ -11,8 +14,21 @@ import java.util.Map;
 public class ReversePolishCalculator {
 
     public static void main(String[] args) {
+        //使用脚本引擎输出正确结果
+        ScriptEngineManager scriptEngineManager = new ScriptEngineManager();
+        ScriptEngine scriptEngine = scriptEngineManager.getEngineByName("nashorn");
+        String expression = "-3.1+(-1.1+1)*5";
+
+        try {
+            String result = String.valueOf(scriptEngine.eval(expression));
+            System.out.println(result);
+        } catch (ScriptException e) {
+            e.printStackTrace();
+        }
+
+        //使用逆波兰计算器输出自己计算的结果
         ReversePolishCalculator calculator = new ReversePolishCalculator();
-        String reversePolish = calculator.normal2ReversePolish("-3.0+(-1.0+1)*5");
+        String reversePolish = calculator.normal2ReversePolish("-3.1+(-1.1+1)*5");
         System.out.println(calculator.calculate(reversePolish));
     }
 
