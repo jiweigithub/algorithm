@@ -77,7 +77,6 @@ public class EightQueensSolution {
 
     //写一个方法，将皇后摆放的位置打印出来
     public void print() {
-        String[][] board = new String[array.length][array.length];
         count++;
         for (int i = 0; i < array.length; i++) {
             System.out.printf("{%d,%d}\t", i, array[i]);
