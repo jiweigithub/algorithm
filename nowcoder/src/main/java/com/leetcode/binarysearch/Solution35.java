@@ -1,4 +1,4 @@
-package com.leetcode.array;
+package com.leetcode.binarysearch;
 
 /**
  * 搜索插入位置
