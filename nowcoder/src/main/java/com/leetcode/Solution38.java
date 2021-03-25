@@ -43,6 +43,11 @@ public class Solution38 {
         return input;
     }
 
+    /**
+     * 双指针处理
+     * @param input
+     * @return
+     */
     public String printCountAndSay(String input) {
         List<String> charGroup = new ArrayList<>();
         int firstIndex = 0;
