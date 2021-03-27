@@ -1,6 +1,7 @@
 package com.shangguigu.algorithm.sort;
 
-import java.util.Arrays;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 /**
  * 选择排序
@@ -18,7 +19,20 @@ public class SelectSort {
     public static void main(String[] args) {
         int[] array = new int[]{3, 9, -1, 10, -2};
         sort(array);
-        System.out.println(Arrays.toString(array));
+//        System.out.println(Arrays.toString(array));
+
+        //测试选择排序的执行时间
+        //创建有80000个随机数的数组
+        int[] arr = new int[80000];
+        for (int i = 0; i < arr.length; i++) {
+            arr[i] = (int) (Math.random() * 800000);
+        }
+        SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss SSS");
+        String start = dateFormat.format(new Date());
+        System.out.println("排序前：" + start);
+        sort(arr);
+        String end = dateFormat.format(new Date());
+        System.out.println("排序后：" + end);
     }
 
     public static void sort(int[] array) {

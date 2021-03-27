@@ -1,6 +1,8 @@
 package com.shangguigu.algorithm.sort;
 
+import java.text.SimpleDateFormat;
 import java.util.Arrays;
+import java.util.Date;
 
 /**
  * 冒泡排序
@@ -14,9 +16,22 @@ public class BubbleSort {
 
     public static void main(String[] args) {
         BubbleSort bubbleSort = new BubbleSort();
-        int[] array = new int[]{3, 9, -1, 10, 20};
-        bubbleSort.ascSort(array);
+//        int[] array = new int[]{3, 9, -1, 10, 20};
+//        bubbleSort.ascSort(array);
 //        bubbleSort.descSort(array);
+
+        //测试冒泡排序的执行时间
+        //创建有80000个随机数的数组
+        int[] arr = new int[80000];
+        for (int i = 0; i < arr.length; i++) {
+            arr[i] = (int) (Math.random() * 800000);
+        }
+        SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss SSS");
+        String start = dateFormat.format(new Date());
+        System.out.println("排序前：" + start);
+        bubbleSort.ascSort(arr);
+        String end = dateFormat.format(new Date());
+        System.out.println("排序后：" + end);
     }
 
     /**
@@ -35,8 +50,8 @@ public class BubbleSort {
                     array[j + 1] = temp;
                 }
             }
-            System.out.printf("第%d次排序，排序后的数组\n", i + 1);
-            System.out.println(Arrays.toString(array));
+//            System.out.printf("第%d次排序，排序后的数组\n", i + 1);
+//            System.out.println(Arrays.toString(array));
             if (!flag) {
                 break;
             } else {
