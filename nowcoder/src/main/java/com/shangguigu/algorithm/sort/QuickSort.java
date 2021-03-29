@@ -12,13 +12,13 @@ public class QuickSort {
     static int count = 0;
 
     public static void main(String[] args) {
-        int[] arr = {3, 5, 8, 1, 1, 2, 9, 4, 7, 7, 6};
+//        int[] arr = {3, 5, 8, 1, 1, 2, 9, 4, 7, 7, 6};
 
-//        int[] arr = new int[80000000];
-//        for (int i = 0; i < arr.length; i++) {
-//            arr[i] = (int) (Math.random() * 8000000);
-//        }
-        System.out.println("快排前：" + Arrays.toString(arr));
+        int[] arr = new int[80000];
+        for (int i = 0; i < arr.length; i++) {
+            arr[i] = (int) (Math.random() * 8000000);
+        }
+//        System.out.println("快排前：" + Arrays.toString(arr));
         SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss SSS");
         String start = dateFormat.format(new Date());
         System.out.println("排序前：" + start);
@@ -57,7 +57,7 @@ public class QuickSort {
         }
         arr[right] = arr[l];
         arr[l] = basic;
-        System.out.println("第" + count + "次快排" + Arrays.toString(arr));
+//        System.out.println("第" + count + "次快排" + Arrays.toString(arr));
         quickSort(arr, left, l - 1);
         quickSort(arr, l + 1, right);
     }
