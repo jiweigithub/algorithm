@@ -115,10 +115,10 @@ public class ShellSort {
             while (insertIndex - gap >= 0 && insertVal < arr[insertIndex - gap]) {
                 //array[insertIndex]移动
                 arr[insertIndex] = arr[insertIndex - gap];
-                //插入位置向前移动一位
+                //插入位置向前移动gap位
                 insertIndex -= gap;
             }
-            //当退出while循环时，说明插入的位置找到, insertIndex+gap
+            //当退出while循环时，说明插入的位置找到, insertIndex
             arr[insertIndex] = insertVal;
         }
         System.out.println("第1轮希尔排序后");

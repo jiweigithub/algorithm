@@ -1,11 +1,16 @@
 package com.shangguigu.algorithm.sort;
 
 import java.text.SimpleDateFormat;
-import java.util.Arrays;
 import java.util.Date;
 
 /**
  * 快速排序
+ * 快速排序是对冒泡排序的一中改进。基本思想是：
+ *
+ * 通过一趟排序将要排序的数据分割成独立的两部分，
+ * 其中一部分的所有数据都比另外一部分的所有数据要小，
+ * 然后再按此方法对这两部分数据分别进行快速排序，
+ * 整个排序过程可以递归进行，以此达到整个数据组变成有序序列。
  */
 public class QuickSort {
 

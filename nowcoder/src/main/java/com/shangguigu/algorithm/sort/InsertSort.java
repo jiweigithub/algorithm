@@ -6,6 +6,11 @@ import java.util.Date;
 
 /**
  * 插入排序
+ * 把n个待排序的元素看成一个有序表和一个无序表，
+ * 开始时有序表中只有一个元素，无序表中包含n-1个元素，
+ * 排序过程中每次从无需表中取出第一个元素，
+ * 把它的排序码依次与有序表元素的排序码进行比较，
+ * 将它插入到有序表中的适当位置（有序码中的元素后移），使之称为新的有序表。
  */
 public class InsertSort {
 
@@ -85,16 +90,16 @@ public class InsertSort {
             //待插入数为array[i]
             int insertVal = array[i];
             //初始插入位置为i-1
-            int insertIndex = i - 1;
-            //当insertIndex不小于0（不越界）且待插入数小于array[insertIndex]
-            while (insertIndex >= 0 && insertVal < array[insertIndex]) {
+            int insertIndex = i;
+            //当insertIndex - 1不小于0（不越界）且待插入数小于前面有序数列的最后一位array[insertIndex - 1]
+            while (insertIndex - 1 >= 0 && insertVal < array[insertIndex - 1]) {
                 //array[insertIndex]后移
-                array[insertIndex + 1] = array[insertIndex];
+                array[insertIndex] = array[insertIndex - 1];
                 //插入位置向前移动一位
                 insertIndex--;
             }
-            //当退出while循环时，说明插入的位置找到, insertIndex+1
-            array[insertIndex + 1] = insertVal;
+            //当退出while循环时，说明插入的位置找到, insertIndex
+            array[insertIndex] = insertVal;
             System.out.printf("第%d轮插入后\n", i);
             System.out.println(Arrays.toString(array));
         }
@@ -107,16 +112,16 @@ public class InsertSort {
             //待插入数为array[i]
             int insertVal = array[i];
             //初始插入位置为i-1
-            int insertIndex = i - 1;
+            int insertIndex = i;
             //当insertIndex不小于0（不越界）且待插入数小于array[insertIndex]
-            while (insertIndex >= 0 && insertVal > array[insertIndex]) {
+            while (insertIndex - 1 >= 0 && insertVal > array[insertIndex - 1]) {
                 //array[insertIndex]后移
-                array[insertIndex + 1] = array[insertIndex];
+                array[insertIndex] = array[insertIndex - 1];
                 //插入位置向前移动一位
                 insertIndex--;
             }
             //当退出while循环时，说明插入的位置找到, insertIndex+1
-            array[insertIndex + 1] = insertVal;
+            array[insertIndex] = insertVal;
 //            System.out.printf("第%d轮插入后\n", i);
 //            System.out.println(Arrays.toString(array));
         }
