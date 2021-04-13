@@ -3,6 +3,7 @@ package com.shangguigu.datastructures.graph;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.LinkedList;
 
 /**
  * 邻接矩阵实现图
@@ -38,7 +39,6 @@ public class Graph {
         //初始化矩阵和vertexList
         edges = new int[n][n];
         vertexList = new ArrayList<>(n);
-        isVisited = new boolean[n];
     }
 
     /**
@@ -95,9 +95,58 @@ public class Graph {
     }
 
     /**
+     * 对一个节点进行广度优先遍历
+     *
+     * @param isVisited
+     * @param i
+     */
+    public void bfs(boolean[] isVisited, int i) {
+        //表示队列的头节点对应的下标
+        int u;
+        //邻接节点的下标
+        int w;
+        //定义一个节点访问队列
+        LinkedList<Integer> queue = new LinkedList<>();
+        //访问该节点
+        System.out.print(getValueByIndex(i) + "->");
+        //标记为已访问
+        isVisited[i] = true;
+        //将节点加入队列
+        queue.addLast(i);
+        while (!queue.isEmpty()) {
+            //取出队列的头节点下标
+            u = queue.removeFirst();
+            //得到u的第一个邻接节点下标
+            w = getFirstAdjacent(u);
+            while (w != -1) {
+                //说明找到了
+                if (!isVisited[w]) {
+                    System.out.print(getValueByIndex(w) + "->");
+                    //标记为已访问
+                    isVisited[w] = true;
+                    queue.addLast(w);
+                } else {
+                    //如果访问过了，查找u的下一个邻接节点
+                    w = getNextAdjacent(u, w);
+                }
+            }
+        }
+    }
+
+    public void bfs() {
+        isVisited = new boolean[vertexList.size()];
+        for (int i = 0; i < vertexList.size(); i++) {
+            if (!isVisited[i]) {
+                bfs(isVisited, i);
+            }
+        }
+    }
+
+    /**
      * 对dfs进行重载，遍历所有节点，进行dfs
      */
     public void dfs() {
+        isVisited = new boolean[vertexList.size()];
         //遍历所有的节点，进行dfs
         for (int i = 0; i < vertexList.size(); i++) {
             if (!isVisited[i]) {
@@ -182,26 +231,40 @@ public class Graph {
     public static void main(String[] args) {
         //测试图的创建
         //节点的个数
-        int n = 5;
-        String[] vertexValues = {"A", "B", "C", "D", "E"};
+        int n = 8;
+        String[] vertexValues = {"1", "2", "3", "4", "5", "6", "7", "8"};
         //创建图对象
-        Graph graph = new Graph(5);
+        Graph graph = new Graph(n);
         //循环的添加顶点
         for (String vertex : vertexValues) {
             graph.insertVertex(vertex);
         }
         //添加边
         //A-B,A-C,B-C,B-D,B-E
+//        graph.insertEdge(0, 1, 1);
+//        graph.insertEdge(0, 2, 1);
+//        graph.insertEdge(1, 2, 1);
+//        graph.insertEdge(1, 3, 1);
+//        graph.insertEdge(1, 4, 1);
+
         graph.insertEdge(0, 1, 1);
         graph.insertEdge(0, 2, 1);
-        graph.insertEdge(1, 2, 1);
         graph.insertEdge(1, 3, 1);
         graph.insertEdge(1, 4, 1);
+        graph.insertEdge(3, 7, 1);
+        graph.insertEdge(4, 7, 1);
+        graph.insertEdge(2, 5, 1);
+        graph.insertEdge(2, 6, 1);
+        graph.insertEdge(5, 6, 1);
 
         //显示邻接矩阵
         graph.showGraph();
-
+        System.out.println("深度优先遍历");
         graph.dfs();
+        System.out.println();
+        System.out.println("广度优先遍历");
+        graph.bfs();
+        System.out.println();
     }
 
 

@@ -7,7 +7,7 @@ public class BinarySearch {
 
     public static void main(String[] args) {
         int[] arr = {1, 8, 10, 89, 1000, 1234};
-        int index = search(arr, 12);
+        int index = search(arr, 1234);
         if (index == -1) {
             System.out.println("未查找到数据");
         } else {
@@ -18,7 +18,8 @@ public class BinarySearch {
     public static int search(int[] arr, int target) {
         int left = 0;
         int right = arr.length - 1;
-        return binarySearch(arr, left, right, target);
+//        return binarySearch(arr, left, right, target);
+        return binarySearch2(arr,target);
     }
 
     public static int binarySearch(int[] arr, int left, int right, int target) {
@@ -37,5 +38,22 @@ public class BinarySearch {
         } else {
             return -1;
         }
+    }
+
+    public static int binarySearch2(int[] arr, int target) {
+        int left = 0;
+        int right = arr.length - 1;
+        while (left <= right) {
+            int mid = (left + right) / 2;
+            //如果目标值小于arr[mid],说明目标值在left和mid之间
+            if (target < arr[mid]) {
+                right = mid - 1;
+            } else if (target > arr[mid]) {
+                left = mid + 1;
+            } else {
+                return mid;
+            }
+        }
+        return -1;
     }
 }
