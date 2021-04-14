@@ -9,7 +9,8 @@ import java.util.Scanner;
  * <p>
  * 题目描述
  * 问题描述：数独（Sudoku）是一款大众喜爱的数字逻辑游戏。
- * 玩家需要根据9X9盘面上的已知数字，推算出所有剩余空格的数字，并且满足每一行、每一列、每一个粗线宫内的数字均含1-9，并且不重复。
+ * 玩家需要根据9X9盘面上的已知数字，推算出所有剩余空格的数字，
+ * 并且满足每一行、每一列、每一个粗线宫内的数字均含1-9，并且不重复。
  * 输入：
  * 包含已知数字的9X9盘面数组[空缺位以数字0表示]
  * 输出：
@@ -45,94 +46,94 @@ import java.util.Scanner;
  */
 public class Hj44Main {
 
+    //定义行列以及3*3九宫格使用情况
+    static boolean[][] line = new boolean[9][9];
+    static boolean[][] column = new boolean[9][9];
+    static boolean[][][] block = new boolean[3][3][9];
+    static boolean valid = false;
+    static List<int[]> spaces = new ArrayList<int[]>();
+
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
         int[][] arr = new int[9][9];
         while (scanner.hasNextLine()) {
-            List<int[]> spaces = new ArrayList<int[]>();
             for (int i = 0; i < arr.length; i++) {
                 String s = scanner.nextLine();
                 s = s.trim();
                 String[] s1 = s.split(" ");
                 for (int j = 0; j < s1.length; j++) {
-                    arr[i][j] = Integer.parseInt(s1[j]);
+                    int num = Integer.parseInt(s1[j]);
+                    arr[i][j] = num;
                     //如果是空，则放入spaces中
                     if (arr[i][j] == 0) {
                         spaces.add(new int[]{i, j});
+                    } else {
+                        //第i行中num已经被使用过了
+                        //第j列中num已经被使用过了
+                        //在包含i,j的九宫格内num已经被使用过了
+                        line[i][num - 1] = column[j][num - 1] = block[i / 3][j / 3][num - 1] = true;
                     }
                 }
             }
             sudoku(arr, spaces);
-            for (int[] row : arr) {
-                for (int i = 0; i < row.length; i++) {
-                    if (i < row.length - 1) {
-                        System.out.printf("%d ", row[i]);
-                    } else {
-                        System.out.printf("%d", row[i]);
-                    }
-                }
-                System.out.println();
-            }
+            init();
+            printArray(arr);
         }
     }
 
-    public static void sudoku(int[][] arr, List<int[]> spaces) {
-        check(arr, spaces, 0);
+    private static void init() {
+        line = new boolean[9][9];
+        column = new boolean[9][9];
+        block = new boolean[3][3][9];
+        valid = false;
+        spaces = new ArrayList<int[]>();
+    }
+
+    private static void printArray(int[][] arr) {
+        for (int[] row : arr) {
+            for (int i = 0; i < row.length; i++) {
+                if (i < row.length - 1) {
+                    System.out.printf("%d ", row[i]);
+                } else {
+                    System.out.printf("%d", row[i]);
+                }
+            }
+            System.out.println();
+        }
     }
 
     /**
-     * 判断当前要放置的数字是否满足要求
-     * 满足每一行、每一列、每一个粗线宫内的数字均含1-9，并且不重复
+     * 求解数独
      *
-     * @param num 将要放置的数字
-     * @param x   将要放置的x下标
-     * @param y   将要放置的y下标
-     * @param arr 数独数组
-     * @return 如果重复返回false，如果不重复返回true
+     * @param arr    待求解数独矩阵
+     * @param spaces 未被使用的格子坐标
      */
-    public static boolean judge(int num, int x, int y, int[][] arr) {
-        //判断行
-        for (int i = 0; i < arr.length; i++) {
-            if (arr[x][i] == num) {
-                return false;
-            }
-        }
-
-        //判断列
-        for (int i = 0; i < arr.length; i++) {
-            if (arr[i][y] == num) {
-                return false;
-            }
-        }
-
-        //判断x,y所在的九宫
-        for (int i = (x - x % 3); i < (x - x % 3) + 2; i++) {
-            for (int j = (y - y % 3); j < (y - y % 3) + 2; j++) {
-                if (arr[i][j] == num) {
-                    return false;
-                }
-            }
-        }
-        return true;
+    public static void sudoku(int[][] arr, List<int[]> spaces) {
+        check(arr, spaces, 0);
     }
 
     public static void check(int[][] array, List<int[]> spaces, int pos) {
         //如果已经放完最后一个位置
         if (pos == spaces.size()) {
+            valid = true;
             return;
         }
         //得到当前空白位置坐标
-        int[] posArray = spaces.get(pos);
-        int x = posArray[0];
-        int y = posArray[1];
+        int[] space = spaces.get(pos);
+        int i = space[0], j = space[1];
         //从1至9依次遍历向空白位置放数字
-        for (int num = 1; num < array.length + 1; num++) {
-            //如果num在当前位置可以放
-            if (judge(num,x, y, array)) {
-                array[x][y] = num;
-                //继续放下一个位置
+        for (int digit = 0; digit < 9 && !valid; ++digit) {
+            //判断当前要放置的数字是否满足要求
+            //满足每一行、每一列、每一个粗线宫内的数字均含1-9，并且不重复
+            if (!line[i][digit] && !column[j][digit] && !block[i / 3][j / 3][digit]) {
+                line[i][digit] = column[j][digit] = block[i / 3][j / 3][digit] = true;
+                array[i][j] = digit + 1;
                 check(array, spaces, pos + 1);
+                //在回溯到当前递归层时，我们还要将
+                // line[i][digit] = column[j][digit] = block[i / 3][j / 3][digit] = false;
+                line[i][digit] = column[j][digit] = block[i / 3][j / 3][digit] = false;
             }
         }
+
     }
 }
