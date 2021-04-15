@@ -41,6 +41,12 @@ public class Hj37Main {
         }
     }
 
+    /**
+     * 动态规划求解斐波那契数列的值
+     *
+     * @param n
+     * @return
+     */
     public static long fibonacci2(int n) {
         if (n < 1) {
             return -1;
