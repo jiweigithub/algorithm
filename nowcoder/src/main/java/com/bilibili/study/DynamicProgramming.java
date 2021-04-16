@@ -1,5 +1,7 @@
 package com.bilibili.study;
 
+import java.util.ArrayList;
+
 /**
  * 动态规划
  * 从数组中选出若干个数字，选出的数字下标不能相邻，求解怎样选结果最大
@@ -41,16 +43,32 @@ public class DynamicProgramming {
     }
 
     public static int dpOpt(int[] arr) {
+        ArrayList<Integer>[] optRecords = new ArrayList[arr.length];
+        for (int i = 0; i < optRecords.length; i++) {
+            optRecords[i] = new ArrayList<>();
+        }
         //最优解数组
         int[] opt = new int[arr.length];
         int a;
         int b;
         opt[0] = arr[0];
+        optRecords[0].add(arr[0]);
         opt[1] = Math.max(arr[0], arr[1]);
+        if (opt[1] == arr[0]) {
+            optRecords[1].add(arr[0]);
+        } else {
+            optRecords[1].add(arr[1]);
+        }
         for (int i = 2; i < arr.length; i++) {
             a = opt[i - 2] + arr[i];
             b = opt[i - 1];
             opt[i] = Math.max(a, b);
+            if (opt[i] == a) {
+                optRecords[i].addAll(optRecords[i - 2]);
+                optRecords[i].add(arr[i]);
+            } else {
+                optRecords[i].addAll(optRecords[i - 1]);
+            }
         }
         return opt[arr.length - 1];
     }
