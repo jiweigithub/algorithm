@@ -1,5 +1,7 @@
 package com.leetcode;
 
+import java.util.ArrayList;
+
 /**
  * 最大连续子序和
  * <p>
@@ -30,7 +32,7 @@ package com.leetcode;
 public class Solution53 {
     public static void main(String[] args) {
         int[] nums = {-2, 1, -3, 4, -1, 2, 1, -5, 4};
-        System.out.println(dpOpt(nums));
+        System.out.println(dpOpt2(nums));
     }
 
     public static int dpOpt(int[] nums) {
@@ -47,5 +49,40 @@ public class Solution53 {
             }
         }
         return maxAns;
+    }
+
+    /**
+     * 动态规划解法2
+     * 当 i = 0 时 f(i) = nums[0]
+     * 当 i > 0 时 f(i) = max{f(i-1)+nums[i],nums[i]}
+     *
+     * @param nums
+     * @return
+     */
+    public static int dpOpt2(int[] nums) {
+
+        ArrayList<Integer>[] optRecords = new ArrayList[nums.length];
+        for (int i = 0; i < optRecords.length; i++) {
+            optRecords[i] = new ArrayList<>();
+        }
+
+        int[] opt = new int[nums.length];
+
+        //当i=0时
+        opt[0] = nums[0];
+        optRecords[0].add(nums[0]);
+        //当i大于0时 f(i) = max{f(i-1)+nums[i],nums[i]}
+        int pre = nums[0];
+        for (int i = 1; i < nums.length; i++) {
+            pre = Math.max(pre + nums[i], nums[i]);
+            opt[i] = Math.max(opt[i - 1], pre);
+            if (opt[i] == pre) {
+                optRecords[i].addAll(optRecords[i - 1]);
+                optRecords[i].add(nums[i]);
+            } else {
+                optRecords[i].addAll(optRecords[i - 1]);
+            }
+        }
+        return opt[nums.length - 1];
     }
 }
