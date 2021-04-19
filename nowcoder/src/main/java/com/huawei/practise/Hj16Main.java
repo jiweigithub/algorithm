@@ -117,10 +117,7 @@ public class Hj16Main {
                     b[i][j] = b[i - 1][j];
                 } else {
                     //如果当前商品是主件
-                    if (j < v0) {
-                        //不满足以上任何一个条件时
-                        b[i][j] = b[i - 1][j];
-                    }
+                    b[i][j] = b[i - 1][j];
                     if (j >= v0 && v0 != 0) {
                         b[i][j] = Math.max(b[i][j], b[i - 1][j - v0] + dp0);
                     }
