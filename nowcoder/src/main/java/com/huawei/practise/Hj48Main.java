@@ -1,7 +1,5 @@
 package com.huawei.practise;
 
-import java.util.ArrayList;
-import java.util.List;
 import java.util.Scanner;
 
 public class Hj48Main {
