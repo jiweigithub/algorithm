@@ -1,5 +1,7 @@
 package com.huawei.practise;
 
+import java.util.Scanner;
+
 /**
  * 字符串编辑距离
  * <p>
@@ -9,7 +11,13 @@ package com.huawei.practise;
 public class Hj52Main {
 
     public static void main(String[] args) {
-
+        Scanner scanner = new Scanner(System.in);
+        while (scanner.hasNextLine()) {
+            String word1 = scanner.nextLine();
+            String word2 = scanner.nextLine();
+            int i = levenshteinDistance(word1, word2);
+            System.out.println(i);
+        }
     }
 
     /**
@@ -19,9 +27,8 @@ public class Hj52Main {
      * word1的插入和word2的删除等价 dog,doged 即可以 dog+e+d 也可以 doge-e-d
      * word2的插入和word1的删除等价 同上
      * word1的编辑和word2的编辑等价 cat cad 即可以 cat->cad 也可以 cad -> cat
-     * 以word1 = horse  word2 = ros 为例：
-     * wrod1插入一个字符， 如果我们知道 horse-> ro 的编辑距离为a 那么 horse->ros的编辑距离就是a+1
-     * word2插入
+     * D[i][j] = min(d[i-1][j]+1,d[i][j-1]+1,d[i-1][j-1]) // word1的第i个字符和word2的第j个字符相同
+     * D[i][j] = min(d[i-1][j]+1,d[i][j-1]+1,d[i-1][j-1]+1) //word1的第i个字符和word2的第j个字符不相同
      * @param word1
      * @param word2
      * @return
@@ -45,8 +52,8 @@ public class Hj52Main {
             dp[0][i] = i;
         }
         //计算所有dp解的值
-        for (int i = 1; i < dp.length; i++) {
-            for (int j = 1; j < dp[0].length; j++) {
+        for (int i = 1; i < m + 1; i++) {
+            for (int j = 1; j < n + 1; j++) {
                 //操作word1
                 int left = dp[i - 1][j] + 1;
                 //操作word2
@@ -58,10 +65,9 @@ public class Hj52Main {
                     //则在上一个字符位置的编辑长度上+1，否则无需做任何操作
                     left_down += 1;
                 }
-
+                dp[i][j] = Math.min(left, Math.min(down, left_down));
             }
         }
-        return 0;
+        return dp[m][n];
     }
-
 }
