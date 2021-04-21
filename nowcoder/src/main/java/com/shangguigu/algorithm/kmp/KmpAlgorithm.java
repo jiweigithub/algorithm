@@ -9,10 +9,33 @@ public class KmpAlgorithm {
 
     public static void main(String[] args) {
         String str1 = "BBC ABCDAB ABCDABCDABDE";
-        String str2 = "abba";
+        String str2 = "ABCDABD";
 
         int[] matchVal = getMatchVal(str2);
-        System.out.println(Arrays.toString(matchVal));
+
+        int length1 = str1.length();
+        int length2 = str2.length();
+        int index1 = 0;
+        int index2 = 0;
+        while (index1 < length1 && index2 < length2) {
+            if (str1.charAt(index1) == str2.charAt(index2)) {
+                index1++;
+                index2++;
+            } else {
+                if (index2 > 0) {
+                    index1 = index1 - matchVal[index2-1];
+                } else {
+                    index1++;
+                }
+                index2 = 0;
+
+            }
+        }
+        if (index2 == length2) {
+            System.out.println(index1 - index2);
+        } else {
+            System.out.println(-1);
+        }
     }
 
     /**
