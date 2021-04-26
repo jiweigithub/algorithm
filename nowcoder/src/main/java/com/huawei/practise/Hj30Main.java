@@ -1,4 +1,4 @@
-package com.huawei.practise.sort;
+package com.huawei.practise;
 
 /**
  * 题目描述

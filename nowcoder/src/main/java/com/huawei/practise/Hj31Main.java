@@ -1,4 +1,4 @@
-package com.huawei.practise.sort;
+package com.huawei.practise;
 
 import java.util.ArrayList;
 import java.util.List;

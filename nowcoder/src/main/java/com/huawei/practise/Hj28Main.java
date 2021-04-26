@@ -1,4 +1,4 @@
-package com.huawei.practise.hungary;
+package com.huawei.practise;
 
 import java.util.ArrayList;
 import java.util.Scanner;

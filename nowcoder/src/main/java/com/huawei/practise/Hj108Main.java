@@ -1,4 +1,4 @@
-package com.huawei.practise.recursion;
+package com.huawei.practise;
 
 import java.util.Scanner;
 
