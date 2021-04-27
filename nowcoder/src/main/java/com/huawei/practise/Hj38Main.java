@@ -38,7 +38,12 @@ public class Hj38Main {
         }
     }
 
-
+    /**
+     *
+     * @param sum 最终距离
+     * @param h   初始高度
+     * @param num 反弹次数
+     */
     public static void solution(BigDecimal sum, BigDecimal h, int num) {
         if (num >= 0 && h.compareTo(new BigDecimal(0)) > 0) {
             //落地一次

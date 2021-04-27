@@ -98,7 +98,8 @@ public class Hj30Main {
         for (char c : nums) {
             if (c >= 'a' && c <= 'f' || c >= 'A' && c <= 'F' || c >= '0' && c <= '9') {
                 String bStr = binaryString(Integer.valueOf(c + "", 16));
-                String oxStr = reverseBits(bStr);
+                StringBuilder temp = new StringBuilder(bStr);
+                String oxStr = temp.reverse().toString();
                 String res = Integer.toHexString(Integer.parseInt(oxStr, 2)).toUpperCase();
                 sb.append(res);
             } else {
@@ -117,15 +118,6 @@ public class Hj30Main {
             num <<= 1;
         }
         return result.toString();
-    }
-
-    private static String reverseBits(String binaryString) {
-        char[] chars = binaryString.toCharArray();
-        char[] reversChars = new char[chars.length];
-        for (int i = chars.length - 1; i >= 0; i--) {
-            reversChars[chars.length - i - 1] = chars[i];
-        }
-        return String.valueOf(reversChars);
     }
 }
 
