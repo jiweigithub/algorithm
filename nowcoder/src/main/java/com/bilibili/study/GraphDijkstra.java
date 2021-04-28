@@ -60,11 +60,10 @@ public class GraphDijkstra {
 
     /**
      * 初始化每个顶点到起始点的距离为正无穷
-     *
-     * @param graph
+     *  @param graph
      * @param start
      */
-    public static Map<String, Integer> initDistance(Map<String, Integer> distance, Map<String, List<Node>> graph, String start) {
+    public static void initDistance(Map<String, Integer> distance, Map<String, List<Node>> graph, String start) {
         //初始化各个点到起始点的距离
         distance.put(start, 0);
         graph.forEach((vertex, nodes) -> {
@@ -72,7 +71,6 @@ public class GraphDijkstra {
                 distance.put(vertex, Integer.MAX_VALUE);
             }
         });
-        return distance;
     }
 
     public static Map<String, String> bfs(Map<String, Integer> distance, Map<String, List<Node>> graph, String start) {
