@@ -1,6 +1,6 @@
 package com.huawei.practise;
 
-import java.util.Scanner;
+import java.util.*;
 
 /**
  * 迷宫问题
@@ -114,5 +114,72 @@ public class Hj43Main {
                 return false;
             }
         }
+    }
+
+    public static void bfs(int[][] maze, String start) {
+        //已经访问过的点
+        Set<String> seen = new HashSet<>();
+        //记录当前节点的前驱节点
+        Map<String, String> preLocal = new LinkedHashMap<>();
+        //创建队列
+        Queue<String> queue = new LinkedList<>();
+        queue.offer(start);
+        seen.add(start);
+        preLocal.put(start, null);
+        while (!queue.isEmpty()) {
+            //从队列中取出一个顶点
+            String vertex = queue.poll();
+            //获取当前节点的所有邻接节点
+            String[] split = vertex.split(",");
+            int x = Integer.parseInt(split[0]);
+            int y = Integer.parseInt(split[1]);
+            //得到当前节点的所有邻接节点
+            Set<String> nodes = allAdjacent(maze, x, y);
+            for (String node : nodes) {
+                //如果该邻接节点还未被访问
+                if (!seen.contains(node)) {
+                    //将该节点放入队列
+                    queue.offer(node);
+                    //标记为已访问
+                    seen.add(node);
+                    //记录节点的前驱节点
+                    preLocal.put(node, vertex);
+                }
+            }
+        }
+        List<String> result = new ArrayList<>();
+        String target = (maze.length - 1) + "," + (maze.length - 1);
+        while (target != null) {
+            result.add("(" + target + ")");
+            target = preLocal.get(target);
+        }
+        for (int i = result.size() - 1; i >= 0; i--) {
+            System.out.println(result.get(i));
+        }
+    }
+
+    public static Set<String> allAdjacent(int[][] maze, int x, int y) {
+        Set<String> adjacents = new HashSet<>();
+        //左节点
+        if (x - 1 >= 0 && maze[x - 1][y] != 1) {
+            String node = x - 1 + "," + y;
+            adjacents.add(node);
+        }
+        //右节点
+        if (x + 1 < maze.length && maze[x + 1][y] != 1) {
+            String node = x + 1 + "," + y;
+            adjacents.add(node);
+        }
+        //上节点
+        if (y - 1 >= 0 && maze[x][y - 1] != 1) {
+            String node = x + "," + (y - 1);
+            adjacents.add(node);
+        }
+        //下节点
+        if (y + 1 < maze[0].length && maze[x][y + 1] != 1) {
+            String node = x + "," + (y + 1);
+            adjacents.add(node);
+        }
+        return adjacents;
     }
 }
