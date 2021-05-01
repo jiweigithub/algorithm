@@ -28,7 +28,7 @@ public class Solution325 {
     public static void main(String[] args) {
         Solution325 solution325 = new Solution325();
         int[] arr = new int[]{1, -1, 5, -2, 3};
-        solution325.maxSubArrayLen(arr, 3);
+        solution325.maxSubArrayLen2(arr, 0);
     }
 
     /**
@@ -69,7 +69,6 @@ public class Solution325 {
         int ans = 0;
         for (int i = 0; i < len; i++) {
             sum = sum + nums[i];
-            //相当于窗口右移一位
             if (sum == k) {
                 ans = i + 1;
                 //有可能就是答案
@@ -83,5 +82,34 @@ public class Solution325 {
             }
         }
         return ans;
+    }
+
+    public int maxSubArrayLen2(int[] nums, int k) {
+        int length = nums.length;
+        //用来记录各个位置对应的总数
+        int[] sum = new int[length + 1];
+
+        Map<Integer, Integer> map = new HashMap<>();
+        sum[0] = 0;
+        map.put(sum[0], 0);
+        // sum[i] 表示从第 0 个元素到第 i 个元素的所有元素之和
+        for (int i = 1; i <= length; i++) {
+            sum[i] = sum[i - 1] + nums[i - 1];
+            // 把 sum[i] 的值作为 key，索引 i 作为 value 存储到 HashMap 中
+            if (!map.containsKey(sum[i])) {
+                map.put(sum[i], i);
+            }
+        }
+        int maxLength = 0;  // 初始最大长度为 0
+        // 从 i = length-1 开始往前遍历 map ，
+        for (int i = length; i > maxLength; i--) {
+            //遍历到i时sum[i] 如果 map 中存在 key 其值等于 sum[i] - k，说明找到一个子数组和为 k
+            if (map.containsKey(sum[i] - k)) {
+                // 长度为：map.get(sum[i]) - map.get(sum[i]-k)
+                // map.get(sum[i]) 就是 i
+                maxLength = Math.max(maxLength, i - map.get(sum[i] - k));
+            }
+        }
+        return maxLength;
     }
 }
