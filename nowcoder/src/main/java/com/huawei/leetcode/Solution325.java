@@ -25,6 +25,12 @@ import java.util.Map;
  */
 public class Solution325 {
 
+    public static void main(String[] args) {
+        Solution325 solution325 = new Solution325();
+        int[] arr = new int[]{1, -1, 5, -2, 3};
+        solution325.maxSubArrayLen(arr, 3);
+    }
+
     /**
      * 暴力搜索，会超时
      *
@@ -55,55 +61,10 @@ public class Solution325 {
         return sum == k;
     }
 
-    /**
-     * 设 sum[i] 表示 nums[0] + nums[1] + ... + nums[i-1] 的和，称为第 i 位的前缀和。
-     * <p>
-     * 于是，如果存在两个索引 i 和 j，使得 sum[j] - sum[i] == k，说明找到一个子数组 [i, j-1] ，子数组的和为 k。
-     * <p>
-     * 定义一个 HashMap ，把 sum[i] 作为 key ，把 i 作为 value。如果有相同的 sum[i] ，我们保存 i 最小的那个。
-     * <p>
-     * 从 i == sum.length-1 开始遍历 map：
-     * <p>
-     * 遍历到的为 sum[i] ,如果在 map 中存在 sum[i]-k ，说明存在一个长度为 k 的子数组，
-     * 现在我们得找到这个子数组的起始索引，即 map.get(sum[i]-k)，于是我们统计从 map.get(sum[i]-k) 到 i-1 长度为，并更新 maxLength。
-     *
-     * @param nums
-     * @param k
-     * @return
-     */
+
     public int maxSubArrayLen(int[] nums, int k) {
-        int length = nums.length;
-        int[] sum = new int[length + 1];
-        Map<Integer, Integer> sumMap = new HashMap<>(16);
-        sum[0] = 0;
-        sumMap.put(sum[0], 0);
-        // sum[i] 表示从第 0 个元素到第 i 个元素的所有元素之和
-        for (int i = 1; i <= nums.length; i++) {
-            sum[i] = sum[i - 1] + nums[i - 1];
-            // 把 sum[i] 的值作为 key，索引 i 作为 value 存储到 HashMap 中
-            if (!sumMap.containsKey(sum[i])) {
-                sumMap.put(sum[i], i);
-            }
-        }
-        // 初始最大长度为 0
-        int maxLength = 0;
-        // 从 i = length-1 开始往前遍历 map ，
-        for (int i = length; i > maxLength; i--) {
-            // 假设遍历到 key == sum[i] ，如果 map 中存在 key == sum[i] - k，说明找到一个子数组和为 k
-            if (sumMap.containsKey(sum[i] - k)) {
-                // 长度为：map.get(sum[i]) - map.get(sum[i]-k)
-                // map.get(sum[i]) 就是 i
-                maxLength = Math.max(maxLength, i - sumMap.get(sum[i] - k));
-            }
-        }
-        return maxLength;
-
-    }
-
-
-    public int maxSubArrayLen2(int[] nums, int k) {
         int len = nums.length;
-        Map<Integer, Integer> map = new HashMap<>();
+        Map<Integer, Integer> map = new HashMap<>(16);
         int sum = 0;
         int ans = 0;
         for (int i = 0; i < len; i++) {

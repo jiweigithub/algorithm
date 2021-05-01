@@ -29,12 +29,13 @@ public class Solution32 {
 
     public static void main(String[] args) {
         Solution32 solution32 = new Solution32();
-        System.out.println(solution32.longestValidParentheses(")()))"));
+        System.out.println(solution32.longestValidParenthesesDp(")()())"));
     }
 
     /**
      * 使用栈来解决
-     *  关键点
+     * 关键点
+     *
      * @param s
      * @return
      */
@@ -53,6 +54,34 @@ public class Solution32 {
                 } else {
                     maxans = Math.max(maxans, i - stack.peek());
                 }
+            }
+        }
+        return maxans;
+    }
+
+
+    /**
+     * 用动态规划求解
+     *
+     * @param s
+     * @return
+     */
+    public int longestValidParenthesesDp(String s) {
+        int n = s.length();
+        //如果括号字符长度为0，直接返回
+        if (n == 0) {
+            return 0;
+        }
+        int maxans = 0;
+        int[] dp = new int[n];
+        for (int i = 1; i < n; i++) {
+            if (s.charAt(i) == ')') {
+                if (s.charAt(i - 1) == '(') {
+                    dp[i] = (i >= 2 ? dp[i - 2] : 0) + 2;
+                } else if (i - dp[i - 1] > 0 && s.charAt(i - dp[i - 1] - 1) == '(') {
+                    dp[i] = dp[i - 1] + ((i - dp[i - 1]) >= 2 ? dp[i - dp[i - 1] - 2] : 0) + 2;
+                }
+                maxans = Math.max(maxans, dp[i]);
             }
         }
         return maxans;
