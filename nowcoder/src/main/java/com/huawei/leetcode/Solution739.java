@@ -45,7 +45,7 @@ public class Solution739 {
         int[] ans = new int[T.length];
         Deque<Integer> stack = new LinkedList<>();
         for (int i = 0; i < T.length; i++) {
-            //如果栈为空，且当前温度大于栈顶温度
+            //如果栈不为空，且当前温度大于栈顶温度
             while (!stack.isEmpty() && T[i] > T[stack.peek()]) {
                 //获取栈顶温度下标
                 int preIndex = stack.pop();
