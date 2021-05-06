@@ -34,14 +34,19 @@ public class Solution820 {
 
 
     public int minimumLengthEncoding(String[] words) {
+        //通过Set特性去除重复字符串
         Set<String> good = new HashSet<String>(Arrays.asList(words));
+        //遍历原始字符串数组
         for (String word : words) {
+            //截取字符串后缀
             for (int k = 1; k < word.length(); ++k) {
+                //从去重后的字符串数组中移除与字符串后缀相同的字符串
                 good.remove(word.substring(k));
             }
         }
 
         int ans = 0;
+        //遍历去除重复后缀的字符串集合
         for (String word : good) {
             ans += word.length() + 1;
         }

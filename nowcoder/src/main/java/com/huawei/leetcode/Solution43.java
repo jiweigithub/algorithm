@@ -2,8 +2,31 @@ package com.huawei.leetcode;
 
 /**
  * 字符串相乘
+ * <p>
+ * 给定两个以字符串形式表示的非负整数 num1 和 num2，返回 num1 和 num2 的乘积，它们的乘积也表示为字符串形式。
+ * <p>
+ * 示例 1:
+ * <p>
+ * 输入: num1 = "2", num2 = "3"
+ * 输出: "6"
+ * 示例 2:
+ * <p>
+ * 输入: num1 = "123", num2 = "456"
+ * 输出: "56088"
+ * 说明：
+ * <p>
+ * num1 和 num2 的长度小于110。
+ * num1 和 num2 只包含数字 0-9。
+ * num1 和 num2 均不以零开头，除非是数字 0 本身。
+ * 不能使用任何标准库的大数类型（比如 BigInteger）或直接将输入转换为整数来处理
  */
 public class Solution43 {
+
+    public static void main(String[] args) {
+        Solution43 solution43 = new Solution43();
+        solution43.multiply("123", "456");
+    }
+
     /**
      * 计算形式
      * num1
@@ -12,7 +35,9 @@ public class Solution43 {
      * result
      */
     public String multiply(String num1, String num2) {
+        //如果num1或num2中有一个是0
         if (num1.equals("0") || num2.equals("0")) {
+            //直接放回结果0
             return "0";
         }
         // 保存计算结果
@@ -20,6 +45,7 @@ public class Solution43 {
 
         // num2 逐位与 num1 相乘
         for (int i = num2.length() - 1; i >= 0; i--) {
+            //进位符号
             int carry = 0;
             // 保存 num2 第i位数字与 num1 相乘的结果
             StringBuilder temp = new StringBuilder();
