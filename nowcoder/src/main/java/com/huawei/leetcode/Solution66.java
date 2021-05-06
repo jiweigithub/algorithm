@@ -1,4 +1,4 @@
-package com.leetcode.array;
+package com.huawei.leetcode;
 
 import java.util.Arrays;
 

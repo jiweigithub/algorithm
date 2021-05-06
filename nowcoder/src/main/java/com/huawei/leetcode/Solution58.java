@@ -1,4 +1,4 @@
-package com.leetcode.array;
+package com.huawei.leetcode;
 
 /**
  * 最后一个单词的长度

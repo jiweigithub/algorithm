@@ -1,4 +1,4 @@
-package com.leetcode.linked;
+package com.huawei.leetcode;
 
 /**
  * 合并两个有序链表

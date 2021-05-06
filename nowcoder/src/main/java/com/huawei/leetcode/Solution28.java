@@ -1,4 +1,4 @@
-package com.leetcode.array;
+package com.huawei.leetcode;
 
 /**
  * 实现 strStr()

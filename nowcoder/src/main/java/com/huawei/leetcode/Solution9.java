@@ -1,4 +1,4 @@
-package com.leetcode;
+package com.huawei.leetcode;
 
 /**
  * 回文数

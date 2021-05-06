@@ -1,4 +1,4 @@
-package com.leetcode.recursion;
+package com.huawei.leetcode;
 
 import java.util.ArrayList;
 import java.util.Arrays;

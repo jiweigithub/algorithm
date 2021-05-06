@@ -1,4 +1,4 @@
-package com.leetcode.stack;
+package com.huawei.leetcode;
 
 import java.util.ArrayDeque;
 import java.util.Deque;

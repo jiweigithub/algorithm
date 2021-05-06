@@ -1,4 +1,4 @@
-package com.leetcode;
+package com.huawei.leetcode;
 
 import java.util.HashMap;
 import java.util.Map;

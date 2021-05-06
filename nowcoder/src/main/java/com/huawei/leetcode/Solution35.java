@@ -1,4 +1,4 @@
-package com.leetcode.binarysearch;
+package com.huawei.leetcode;
 
 /**
  * 搜索插入位置

@@ -1,4 +1,4 @@
-package com.leetcode.array;
+package com.huawei.leetcode;
 
 /**
  * 二进制求和

@@ -1,4 +1,4 @@
-package com.leetcode;
+package com.huawei.leetcode;
 
 import java.util.ArrayList;
 
@@ -84,5 +84,22 @@ public class Solution53 {
             }
         }
         return opt[nums.length - 1];
+    }
+
+    public int maxSubArray(int[] nums) {
+
+        int currentCount = 0;
+        int maxCount = nums[0];
+        for (int i = 0; i < nums.length; i++) {
+            if (nums[i] < currentCount + nums[i]) {
+                currentCount = currentCount + nums[i];
+            } else {
+                currentCount = nums[i];
+            }
+            if (maxCount < currentCount) {
+                maxCount = currentCount;
+            }
+        }
+        return maxCount;
     }
 }
