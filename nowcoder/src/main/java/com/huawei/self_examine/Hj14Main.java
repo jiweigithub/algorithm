@@ -1,11 +1,11 @@
-package com.huawei.practise;
+package com.huawei.self_examine;
 
 import java.util.ArrayList;
 import java.util.Scanner;
 
 /**
  * 字符串的连接最长路径查找（字典序排列字符串）
- *
+ * <p>
  * 题目描述
  * 给定n个字符串，请对n个字符串按照字典序排列。
  * 输入描述:
@@ -37,16 +37,22 @@ import java.util.Scanner;
  * two
  * up
  */
-public class Main_14 {
+public class Hj14Main {
+
     public static void main(String[] args) {
-        Scanner sc = new Scanner(System.in);
-        ArrayList<String> outPutList = new ArrayList<>();
-        int count = Integer.parseInt(sc.nextLine());
-        for (int i = 0; i < count; i++) {
-            String input = sc.nextLine();
-            outPutList.add(input);
+        Scanner scanner = new Scanner(System.in);
+        while (scanner.hasNextLine()) {
+            String input = scanner.nextLine();
+            int count = Integer.parseInt(input);
+            ArrayList<String> wordList = new ArrayList<>();
+            for (int i = 0; i < count; i++) {
+                wordList.add(scanner.nextLine());
+            }
+            wordList.sort(String::compareTo);
+            for (String word : wordList) {
+                System.out.println(word);
+            }
         }
-        outPutList.sort(String::compareTo);
-        outPutList.forEach(System.out::println);
     }
+
 }

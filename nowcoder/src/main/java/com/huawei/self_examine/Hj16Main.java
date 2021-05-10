@@ -1,4 +1,4 @@
-package com.huawei.practise;
+package com.huawei.self_examine;
 
 import java.util.Arrays;
 import java.util.Scanner;
@@ -75,10 +75,10 @@ public class Hj16Main {
             goods[i] = new Good(v, p, q);
 
             if (q > 0) {
-                if (goods[q].a1 == -1) {
-                    goods[q].setA1(i);
+                if (goods[q].a1 == null) {
+                    goods[q].setA1(goods[i]);
                 } else {
-                    goods[q].setA2(i);
+                    goods[q].setA2(goods[i]);
                 }
             }
         }
@@ -86,35 +86,36 @@ public class Hj16Main {
         for (int i = 1; i <= n; i++) {
             //主件价值  附件1价值 附件2价值
             int v0 = 0, v1 = 0, v2 = 0;
-            int dp0 = 0, dp1 = 0, dp2 = 0, dp3 = 0;
+            int dp0 = 0, dp1 = 0, dp2 = 0, dp12 = 0;
             //附件1下标
-            int num1 = goods[i].a1;
-            int num2 = goods[i].a2;
+            Good good = goods[i];
+            Good a1 = goods[i].a1;
+            Good a2 = goods[i].a2;
             //只有主件时
-            v0 = goods[i].v;
+            v0 = good.v;
             //dp0 = 主件价值*主件权重
-            dp0 = v0 * goods[i].p;
+            dp0 = v0 * good.p;
 
             //如果有附件1
-            if (num1 != -1) {
-                v1 = goods[num1].v;
-                dp1 = dp0 + v1 * goods[num1].p;
+            if (a1 != null) {
+                v1 = a1.v;
+                dp1 = dp0 + v1 * a1.p;
             }
 
             //如果有附件2
-            if (num2 != -1) {
-                v2 = goods[num2].v;
-                dp2 = dp0 + v2 * goods[num2].p;
+            if (a2 != null) {
+                v2 = a2.v;
+                dp2 = dp0 + v2 * a2.p;
             }
 
             //既有附件1，又有附件2
-            if (num1 != -1 && num2 != -1) {
-                dp3 = dp0 + v1 * goods[num1].p + v2 * goods[num2].p;
+            if (a1 != null && a2 != null) {
+                dp12 = dp0 + v1 * a1.p + v2 * a2.p;
             }
             //j表示剩余钱数
             for (int j = 0; j <= money; j += 10) {
-                //如果当前商品是附件，直接跳过
-                if (goods[i].q > 0) {
+                //如果当前商品是附件直接跳过
+                if (good.q > 0) {
                     b[i][j] = b[i - 1][j];
                 } else {
                     //如果当前商品是主件
@@ -130,7 +131,7 @@ public class Hj16Main {
                         b[i][j] = Math.max(b[i][j], b[i - 1][j - v0 - v2] + dp2);
                     }
                     if (j >= v0 + v1 + v2 && v0 + v1 + v2 != 0) {
-                        b[i][j] = Math.max(b[i][j], b[i - 1][j - v0 - v1 - v2] + dp3);
+                        b[i][j] = Math.max(b[i][j], b[i - 1][j - v0 - v1 - v2] + dp12);
                     }
 
                 }
@@ -141,30 +142,27 @@ public class Hj16Main {
         }
         System.out.println(b[n][money]);
     }
+}
 
-    /**
-     * 定义物品类
-     */
-    private static class Good {
-        public int v;  //物品的价格
-        public int p;  //物品的重要度
-        public int q;  //物品的主附件ID
+class Good {
+    public int v;  //物品的价格
+    public int p;  //物品的重要度
+    public int q;  //物品的主附件ID
 
-        public int a1 = -1;   //附件1ID
-        public int a2 = -1;   //附件2ID
+    public Good a1;   //附件1ID
+    public Good a2;   //附件2ID
 
-        public Good(int v, int p, int q) {
-            this.v = v;
-            this.p = p;
-            this.q = q;
-        }
+    public Good(int v, int p, int q) {
+        this.v = v;
+        this.p = p;
+        this.q = q;
+    }
 
-        public void setA1(int a1) {
-            this.a1 = a1;
-        }
+    public void setA1(Good a1) {
+        this.a1 = a1;
+    }
 
-        public void setA2(int a2) {
-            this.a2 = a2;
-        }
+    public void setA2(Good a2) {
+        this.a2 = a2;
     }
 }
