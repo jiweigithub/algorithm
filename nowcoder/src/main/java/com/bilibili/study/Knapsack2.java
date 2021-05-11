@@ -1,7 +1,12 @@
 package com.bilibili.study;
 
 /**
- * 0-1背包问题
+ * 0-1背包问题 v表示物品价值，n表示背包剩余容量， w表示物品重量
+ * <p>
+ * 状态转移方程，将第i件物品放到容量为n的背包中：
+ * 1、如果不放第i件物品,问题会转变成 将前i-1件物品放到容量为n的背包中=> f[i][n] = f[i-1][n]
+ * 2、如果放第i件物品，问题会转变成,将前i-1件物品放到容量为n-w[i]的背包中 => f[i][n] = f[i-1][n-w[i]] + v[i];
+ * 则 f[i][n] = max {f[i-1][n],f[i-1][n-w[i]] + v[i]};
  */
 public class Knapsack2 {
 
@@ -40,7 +45,7 @@ public class Knapsack2 {
         }
         for (int m = 0; m < path.length; m++) {
             for (int n = 0; n < path.length; n++) {
-                System.out.print(path[m][n]+" ");
+                System.out.print(path[m][n] + " ");
             }
             System.out.println();
         }
