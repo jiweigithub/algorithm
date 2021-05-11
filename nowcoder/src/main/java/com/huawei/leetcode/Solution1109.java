@@ -1,8 +1,5 @@
 package com.huawei.leetcode;
 
-import java.util.HashMap;
-import java.util.Map;
-
 /**
  * 航班预定统计
  * <p>
@@ -55,27 +52,16 @@ public class Solution1109 {
      * @return
      */
     public int[] corpFlightBookings(int[][] bookings, int n) {
-        //航班号座位数统计，key表示航班号，v表示改航班号上的预定的座位数
-        Map<Integer, Integer> seatsCount = new HashMap<>(16);
+        int[] counters = new int[n];
         for (int[] booking : bookings) {
-            int start = booking[0];
-            int end = booking[1];
-            int seat = booking[2];
-            int x = end - start;
-            for (int i = 0; i <= x; i++) {
-                if (seatsCount.containsKey(start + i)) {
-                    seatsCount.put(start + i, seatsCount.get(start + i) + seat);
-                } else {
-                    seatsCount.put(start + i, seat);
-                }
+            counters[booking[0] - 1] += booking[2];
+            if (booking[1] < n) {
+                counters[booking[1]] -= booking[2];
             }
         }
-        int[] ans = new int[n];
-        for (int i = 0; i < n; i++) {
-            if (seatsCount.containsKey(i + 1)) {
-                ans[i] = seatsCount.get(i + 1);
-            }
+        for (int i = 1; i < n; ++i) {
+            counters[i] += counters[i - 1];
         }
-        return ans;
+        return counters;
     }
 }
