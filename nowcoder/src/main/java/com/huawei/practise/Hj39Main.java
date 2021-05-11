@@ -130,7 +130,7 @@ public class Hj39Main {
         String[] maskSplit = mask.split("\\.");
         for (int i = 0; i < maskSplit.length; i++) {
             if (Integer.parseInt(maskSplit[i]) > 255 || Integer.parseInt(maskSplit[i]) < 0) {
-                return false;
+                return true;
             }
         }
         StringBuilder maskBinaryBuilder = new StringBuilder("");

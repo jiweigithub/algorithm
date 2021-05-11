@@ -1,5 +1,6 @@
 package com.huawei.practise;
 
+import java.text.SimpleDateFormat;
 import java.util.*;
 
 /**
@@ -66,6 +67,8 @@ public class Hj43Main {
                     maze[i][j] = Integer.parseInt(s3[j]);
                 }
             }
+            SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss:SSS");
+            System.out.println("递归回溯走入迷宫：" + dateFormat.format(new Date()));
             setWay(maze, 0, 0, m, n);
             for (int i = 0; i < m; i++) {
                 for (int j = 0; j < n; j++) {
@@ -74,6 +77,11 @@ public class Hj43Main {
                     }
                 }
             }
+            System.out.println("走出迷宫：" + dateFormat.format(new Date()));
+
+            System.out.println("BFS走入迷宫：" + dateFormat.format(new Date()));
+            bfs(maze, "0,0");
+            System.out.println("BFS走出迷宫：" + dateFormat.format(new Date()));
         }
     }
 
