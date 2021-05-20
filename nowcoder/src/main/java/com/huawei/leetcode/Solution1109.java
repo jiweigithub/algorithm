@@ -45,7 +45,6 @@ public class Solution1109 {
     }
 
     /**
-     * 暴力统计
      *
      * @param bookings
      * @param n

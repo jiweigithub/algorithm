@@ -14,32 +14,38 @@ public class GraphDijkstra {
         {
             List<Node> a_Adjacent = new ArrayList<>();
             a_Adjacent.add(new Node("B", 5));
-            a_Adjacent.add(new Node("C", 1));
+            a_Adjacent.add(new Node("C", 7));
+            a_Adjacent.add(new Node("G", 2));
             graph.put("A", a_Adjacent);
             List<Node> b_Adjacent = new ArrayList<>();
             b_Adjacent.add(new Node("A", 5));
-            b_Adjacent.add(new Node("C", 2));
-            b_Adjacent.add(new Node("D", 1));
+            b_Adjacent.add(new Node("D", 9));
+            b_Adjacent.add(new Node("G", 3));
             graph.put("B", b_Adjacent);
             List<Node> c_Adjacent = new ArrayList<>();
-            c_Adjacent.add(new Node("A", 1));
-            c_Adjacent.add(new Node("B", 2));
-            c_Adjacent.add(new Node("D", 4));
+            c_Adjacent.add(new Node("A", 7));
             c_Adjacent.add(new Node("E", 8));
             graph.put("C", c_Adjacent);
             List<Node> d_Adjacent = new ArrayList<>();
-            d_Adjacent.add(new Node("B", 1));
-            d_Adjacent.add(new Node("C", 4));
-            d_Adjacent.add(new Node("E", 3));
-            d_Adjacent.add(new Node("F", 6));
+            d_Adjacent.add(new Node("B", 9));
+            d_Adjacent.add(new Node("F", 4));
             graph.put("D", d_Adjacent);
             List<Node> e_Adjacent = new ArrayList<>();
             e_Adjacent.add(new Node("C", 8));
-            e_Adjacent.add(new Node("D", 3));
+            e_Adjacent.add(new Node("F", 5));
+            e_Adjacent.add(new Node("G", 4));
             graph.put("E", e_Adjacent);
             List<Node> f_Adjacent = new ArrayList<>();
-            f_Adjacent.add(new Node("D", 6));
+            f_Adjacent.add(new Node("D", 4));
+            f_Adjacent.add(new Node("E", 5));
+            f_Adjacent.add(new Node("G", 6));
             graph.put("F", f_Adjacent);
+            List<Node> g_Adjacent = new ArrayList<>();
+            g_Adjacent.add(new Node("A", 2));
+            g_Adjacent.add(new Node("B", 3));
+            g_Adjacent.add(new Node("E", 4));
+            g_Adjacent.add(new Node("F", 6));
+            graph.put("G", g_Adjacent);
         }
         Map<String, Integer> distance = new LinkedHashMap<>();
         Map<String, String> parent = bfs(distance, graph, "A");
@@ -51,7 +57,7 @@ public class GraphDijkstra {
             System.out.println(k + " " + v);
         });
 
-        String target = "B";
+        String target = "F";
         while (target != null) {
             System.out.println(target);
             target = parent.get(target);
@@ -60,10 +66,11 @@ public class GraphDijkstra {
 
     /**
      * 初始化每个顶点到起始点的距离为正无穷
-     *  @param graph
+     *
+     * @param graph
      * @param start
      */
-    public static void initDistance(Map<String, Integer> distance, Map<String, List<Node>> graph, String start) {
+    public static Map<String, Integer> initDistance(Map<String, Integer> distance, Map<String, List<Node>> graph, String start) {
         //初始化各个点到起始点的距离
         distance.put(start, 0);
         graph.forEach((vertex, nodes) -> {
@@ -71,6 +78,7 @@ public class GraphDijkstra {
                 distance.put(vertex, Integer.MAX_VALUE);
             }
         });
+        return distance;
     }
 
     public static Map<String, String> bfs(Map<String, Integer> distance, Map<String, List<Node>> graph, String start) {
