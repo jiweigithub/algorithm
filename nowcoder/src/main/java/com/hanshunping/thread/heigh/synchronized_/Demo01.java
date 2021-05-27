@@ -15,6 +15,7 @@ class MyThread extends Thread {
 
     @Override
     public void run() {
+        //可重入验证
         synchronized (this) {
             try {
                 Thread.sleep(1000);
