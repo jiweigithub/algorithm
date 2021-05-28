@@ -29,7 +29,9 @@ class T1 extends Thread {
                 //InterruptedException 是捕获到的一个异常
                 e.printStackTrace();
                 System.out.println(Thread.currentThread().getName() + "被interrupt了");
+                break;
             }
         }
+
     }
 }
