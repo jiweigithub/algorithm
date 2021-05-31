@@ -14,6 +14,11 @@ public class LockSupportDemo {
 
     public static void main(String[] args) {
 
+        lockAwaitAndSignal();
+
+    }
+
+    private static void lockSupportParkAndUnpark() {
         Thread a = new Thread(() -> {
             try {
                 Thread.sleep(3000);
@@ -32,7 +37,6 @@ public class LockSupportDemo {
             System.out.println(Thread.currentThread().getName() + "\t 通知A线程");
         }, "B");
         b.start();
-
     }
 
     /**
@@ -40,11 +44,11 @@ public class LockSupportDemo {
      */
     private static void lockAwaitAndSignal() {
         new Thread(() -> {
-            try {
-                Thread.sleep(3000);
-            } catch (InterruptedException e) {
-                e.printStackTrace();
-            }
+//            try {
+//                Thread.sleep(3000);
+//            } catch (InterruptedException e) {
+//                e.printStackTrace();
+//            }
             lock.lock();
             try {
                 System.out.println(Thread.currentThread().getName() + "\t come in");
