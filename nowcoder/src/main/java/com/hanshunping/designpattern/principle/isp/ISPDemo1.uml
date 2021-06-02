@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Diagram>
+  <ID>JAVA</ID>
+  <OriginalElement />
+  <nodes>
+    <node x="252.74999999999997" y="0.0">com.hanshunping.designpattern.principle.isp.MyInterface</node>
+    <node x="0.0" y="196.0">com.hanshunping.designpattern.principle.isp.D</node>
+    <node x="314.0" y="219.0">com.hanshunping.designpattern.principle.isp.A</node>
+    <node x="156.99999999999997" y="196.0">com.hanshunping.designpattern.principle.isp.B</node>
+    <node x="540.0" y="219.0">com.hanshunping.designpattern.principle.isp.C</node>
+  </nodes>
+  <notes />
+  <edges>
+    <edge source="com.hanshunping.designpattern.principle.isp.D" target="com.hanshunping.designpattern.principle.isp.MyInterface">
+      <point x="0.0" y="-73.0" />
+      <point x="68.5" y="166.0" />
+      <point x="269.875" y="166.0" />
+      <point x="-51.375" y="73.0" />
+    </edge>
+    <edge source="com.hanshunping.designpattern.principle.isp.B" target="com.hanshunping.designpattern.principle.isp.MyInterface">
+      <point x="0.0" y="-73.0" />
+      <point x="225.49999999999997" y="176.0" />
+      <point x="304.125" y="176.0" />
+      <point x="-17.125" y="73.0" />
+    </edge>
+    <edge source="com.hanshunping.designpattern.principle.isp.C" target="com.hanshunping.designpattern.principle.isp.MyInterface">
+      <point x="0.0" y="-50.0" />
+      <point x="643.0" y="166.0" />
+      <point x="372.625" y="166.0" />
+      <point x="51.375" y="73.0" />
+    </edge>
+    <edge source="com.hanshunping.designpattern.principle.isp.A" target="com.hanshunping.designpattern.principle.isp.MyInterface">
+      <point x="0.0" y="-50.0" />
+      <point x="417.0" y="176.0" />
+      <point x="338.375" y="176.0" />
+      <point x="17.125" y="73.0" />
+    </edge>
+  </edges>
+  <settings layout="Hierarchic Group" zoom="1.2000000000000002" x="214.99999999999997" y="352.08333333333326" />
+  <SelectedNodes>
+    <node>com.hanshunping.designpattern.principle.isp.MyInterface</node>
+  </SelectedNodes>
+  <Categories>
+    <Category>Methods</Category>
+  </Categories>
+  <SCOPE>All</SCOPE>
+  <VISIBILITY>private</VISIBILITY>
+</Diagram>
+

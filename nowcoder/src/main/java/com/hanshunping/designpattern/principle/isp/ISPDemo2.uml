@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Diagram>
+  <ID>JAVA</ID>
+  <OriginalElement />
+  <nodes>
+    <node x="321.0" y="11.5">com.hanshunping.designpattern.principle.isp.MyInterface1</node>
+    <node x="569.25" y="0.0">com.hanshunping.designpattern.principle.isp.MyInterface2</node>
+    <node x="91.75" y="0.0">com.hanshunping.designpattern.principle.isp.MyInterface3</node>
+    <node x="623.0" y="137.0">com.hanshunping.designpattern.principle.isp.B1</node>
+    <node x="0.0" y="137.0">com.hanshunping.designpattern.principle.isp.C1</node>
+    <node x="232.99999999999997" y="137.0">com.hanshunping.designpattern.principle.isp.D1</node>
+    <node x="390.0" y="137.0">com.hanshunping.designpattern.principle.isp.A1</node>
+  </nodes>
+  <notes />
+  <edges>
+    <edge source="com.hanshunping.designpattern.principle.isp.D1" target="com.hanshunping.designpattern.principle.isp.MyInterface3">
+      <point x="-34.25" y="-50.0" />
+      <point x="267.25" y="97.0" />
+      <point x="194.5" y="97.0" />
+      <point x="34.25" y="38.5" />
+    </edge>
+    <edge source="com.hanshunping.designpattern.principle.isp.C1" target="com.hanshunping.designpattern.principle.isp.MyInterface3">
+      <point x="-53.25" y="-50.0" />
+      <point x="53.25" y="117.0" />
+      <point x="126.0" y="117.0" />
+      <point x="-34.25" y="38.5" />
+    </edge>
+    <edge source="com.hanshunping.designpattern.principle.isp.B1" target="com.hanshunping.designpattern.principle.isp.MyInterface1">
+      <point x="-34.25" y="-50.0" />
+      <point x="657.25" y="107.0" />
+      <point x="440.875" y="107.0" />
+      <point x="51.375" y="27.0" />
+    </edge>
+    <edge source="com.hanshunping.designpattern.principle.isp.A1" target="com.hanshunping.designpattern.principle.isp.MyInterface2">
+      <point x="53.25" y="-50.0" />
+      <point x="549.75" y="117.0" />
+      <point x="603.5" y="117.0" />
+      <point x="-34.25" y="38.5" />
+    </edge>
+    <edge source="com.hanshunping.designpattern.principle.isp.A1" target="com.hanshunping.designpattern.principle.isp.MyInterface1">
+      <point x="-53.25" y="-50.0" />
+      <point x="443.25" y="117.0" />
+      <point x="406.625" y="117.0" />
+      <point x="17.125" y="27.0" />
+    </edge>
+    <edge source="com.hanshunping.designpattern.principle.isp.D1" target="com.hanshunping.designpattern.principle.isp.MyInterface1">
+      <point x="34.25" y="-50.0" />
+      <point x="335.75" y="117.0" />
+      <point x="372.375" y="117.0" />
+      <point x="-17.125" y="27.0" />
+    </edge>
+    <edge source="com.hanshunping.designpattern.principle.isp.B1" target="com.hanshunping.designpattern.principle.isp.MyInterface2">
+      <point x="34.25" y="-50.0" />
+      <point x="725.75" y="117.0" />
+      <point x="672.0" y="117.0" />
+      <point x="34.25" y="38.5" />
+    </edge>
+    <edge source="com.hanshunping.designpattern.principle.isp.C1" target="com.hanshunping.designpattern.principle.isp.MyInterface1">
+      <point x="53.25" y="-50.0" />
+      <point x="159.75" y="107.0" />
+      <point x="338.125" y="107.0" />
+      <point x="-51.375" y="27.0" />
+    </edge>
+  </edges>
+  <settings layout="Hierarchic Group" zoom="1.0" x="218.0" y="46.5" />
+  <SelectedNodes>
+    <node>com.hanshunping.designpattern.principle.isp.C1</node>
+  </SelectedNodes>
+  <Categories>
+    <Category>Methods</Category>
+  </Categories>
+  <SCOPE>All</SCOPE>
+  <VISIBILITY>private</VISIBILITY>
+</Diagram>
+
