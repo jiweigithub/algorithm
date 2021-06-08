@@ -3,7 +3,6 @@ package com.hanshunping.designpattern.single;
 /**
  * 懒汉单例（线程不安全）
  * <p>
- * 道高一尺魔高一仗
  */
 public class LazySingle {
 
@@ -18,11 +17,7 @@ public class LazySingle {
 
     private volatile static LazySingle lazySingle;
 
-    /**
-     * 单线程情况下，OK,多线程情况下会出现问题
-     *
-     * @return
-     */
+
     public static LazySingle getInstance() {
         //双重检测锁模式，懒汉式单例，DCL懒汉式
         if (lazySingle == null) {
