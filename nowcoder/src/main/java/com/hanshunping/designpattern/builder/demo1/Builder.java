@@ -1,4 +1,4 @@
-package com.hanshunping.designpattern.factory.builder.demo1;
+package com.hanshunping.designpattern.builder.demo1;
 
 /**
  * 抽象的建造者

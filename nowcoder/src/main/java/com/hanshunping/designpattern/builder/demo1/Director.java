@@ -1,4 +1,4 @@
-package com.hanshunping.designpattern.factory.builder.demo1;
+package com.hanshunping.designpattern.builder.demo1;
 
 /**
  * 指挥者（负责指挥构建一个工程，工程如何让构建，由它决定）

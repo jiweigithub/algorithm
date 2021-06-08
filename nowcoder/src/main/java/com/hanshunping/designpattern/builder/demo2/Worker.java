@@ -1,4 +1,4 @@
-package com.hanshunping.designpattern.factory.builder.demo2;
+package com.hanshunping.designpattern.builder.demo2;
 
 //具体的建造者
 public class Worker extends Builder {
