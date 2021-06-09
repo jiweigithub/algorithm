@@ -6,6 +6,6 @@ package com.hanshunping.designpattern.struct.bridge;
 public class Lenovo implements Brand {
     @Override
     public void info() {
-        System.out.println("联想");
+        System.out.print("联想");
     }
 }
