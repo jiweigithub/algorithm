@@ -1,4 +1,4 @@
-package com.huawei.leetcode;
+package com.huawei.leetcode_1;
 
 /**
  * 最长公共前缀

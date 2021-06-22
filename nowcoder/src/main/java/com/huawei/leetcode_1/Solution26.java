@@ -1,4 +1,4 @@
-package com.huawei.leetcode;
+package com.huawei.leetcode_1;
 
 /**
  * 删除有序数组中的重复项

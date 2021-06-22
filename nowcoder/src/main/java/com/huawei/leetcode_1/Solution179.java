@@ -1,4 +1,4 @@
-package com.huawei.leetcode;
+package com.huawei.leetcode_1;
 
 /**
  * 最大数
